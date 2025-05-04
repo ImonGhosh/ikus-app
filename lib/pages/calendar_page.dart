@@ -15,6 +15,8 @@ import 'package:ikus_app/utility/globals.dart';
 import 'package:ikus_app/utility/popups.dart';
 import 'package:ikus_app/utility/ui.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:ikus_app/screens/date_events_screen.dart';
+
 
 class CalendarPage extends StatefulWidget {
   @override
@@ -138,17 +140,26 @@ class _CalendarPageState extends State<CalendarPage> {
                   },
                   onDaySelected: (DateTime date, _) {
                     List<Event> currEvents = _events[DateTime(date.year, date.month, date.day)] ?? [];
-                    Popups.generic(
-                      context: context,
-                      height: currEvents.length >= 3 ? 275 : 250,
-                      body: DatePopup(
-                        date: date,
-                        events: currEvents.cast<Event>(),
-                        onEventPop: () {
-                          // in case that register information has changed
-                          _updateDataWithSetState();
-                        },
-                      )
+                    // Popups.generic(
+                    //   context: context,
+                    //   height: currEvents.length >= 3 ? 275 : 250,
+                    //   body: DatePopup(
+                    //     date: date,
+                    //     events: currEvents.cast<Event>(),
+                    //     onEventPop: () {
+                    //       // in case that register information has changed
+                    //       _updateDataWithSetState();
+                    //     },
+                    //   )
+                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => DateEventsScreen(
+                          date: date,
+                          events: _events[DateTime(date.year, date.month, date.day)] ?? [],
+                        ),
+                      ),
                     );
                   },
                 ),

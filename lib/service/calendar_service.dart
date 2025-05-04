@@ -14,6 +14,7 @@ import 'package:ikus_app/service/syncable_service.dart';
 import 'package:ikus_app/utility/callbacks.dart';
 import 'package:ikus_app/utility/channel_handler.dart';
 import 'package:intl/intl.dart';
+import 'package:ikus_app/model/coords.dart';
 
 class CalendarService implements SyncableService {
 
@@ -218,4 +219,11 @@ class CalendarService implements SyncableService {
 
     return event.startTime.isAfter(now) || (event.endTime != null && event.endTime!.isAfter(now));
   }
+
+  bool _isInDebugMode() {
+    bool inDebugMode = false;
+    assert(inDebugMode = true); // Will only assign true in debug mode
+    return inDebugMode;
+  }
+
 }

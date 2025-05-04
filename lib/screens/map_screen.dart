@@ -13,6 +13,7 @@ class MapScreen extends StatelessWidget {
 
     final Image campusMain = Image.asset('assets/img/maps/campus-main.jpg');
     final Image campusMed = Image.asset('assets/img/maps/campus-med.jpg');
+    final Image campusCity = Image.asset('assets/img/maps/campus-city-area.jpg');
 
     return Scaffold(
       appBar: AppBar(
@@ -50,6 +51,20 @@ class MapScreen extends StatelessWidget {
             },
           ),
           SizedBox(height: 50),
+          // SizedBox(height: 30),
+          IconText(
+            size: OvguPixels.headerSize,
+            text: t.map.city,
+            icon: Icons.location_city,
+          ),
+          SizedBox(height: 10),
+          MapPreviewCard(
+            tag: 'campusCity',
+            image: campusCity,
+            callback: () {
+              pushScreen(context, () => ImageScreen(image: campusCity, tag: 'campusCity', title: t.map.city));
+            },
+          ),
         ],
       ),
     );

@@ -275,6 +275,7 @@ class TranslationsMapEn {
 	String get title => 'Campus Map';
 	String get main => 'Main Campus';
 	String get med => 'Medicine Campus';
+	String get city => 'Campus City Area';
 }
 
 // Path: mensa

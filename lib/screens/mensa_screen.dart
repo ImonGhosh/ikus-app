@@ -15,6 +15,7 @@ import 'package:ikus_app/utility/extensions.dart';
 import 'package:ikus_app/utility/globals.dart';
 import 'package:ikus_app/utility/ui.dart';
 import 'package:intl/intl.dart';
+import 'package:ikus_app/model/food.dart';
 
 class MensaScreen extends StatefulWidget {
 
@@ -36,6 +37,7 @@ class _MensaScreenState extends State<MensaScreen> {
   final GlobalKey<SmartAnimationState> _bodyAnimationKey = new GlobalKey<SmartAnimationState>();
   late List<MensaInfo> menu;
   late int index;
+  Map<DateTime, bool> _onlyVeganPerDate = {};
 
   @override
   void initState() {
@@ -225,19 +227,56 @@ class _MensaScreenState extends State<MensaScreen> {
               curve: Curves.easeOut,
               child: Column(
                 children: [
-                  ...curr.menus.map((menu) => Padding(
-                    padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, bottom: 10),
-                          child: Text(formatDate(menu.date), style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                        ),
-                        ...menu.food.map((food) => FoodCard(food: food))
-                      ],
-                    ),
-                  )),
+                  ...curr.menus.map((menu) {
+                    final date = menu.date;
+                    final onlyVegan = _onlyVeganPerDate[date] ?? false;
+
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  formatDate(date),
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      value: onlyVegan,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _onlyVeganPerDate[date] = value!;
+                                        });
+                                      },
+                                      activeColor: Colors.green[800],
+                                      checkColor: Colors.white,
+                                    ),
+                                    Text(
+                                      "Only Vegan",
+                                      style: TextStyle(
+                                        color: Colors.green[800],
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          ...menu.food
+                              .where((food) =>
+                          !onlyVegan || (food.tags.contains(FoodTag.VEGAN) ?? false))
+                              .map((food) => FoodCard(food: food)),
+                        ],
+                      ),
+                    );
+                  }),
                   if (curr.menus.isEmpty)
                     Padding(
                       padding: const EdgeInsets.only(left: 50),
