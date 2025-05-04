@@ -272,7 +272,7 @@ class _TranslationsMapDe implements TranslationsMapEn {
 	@override String get title => 'Campusplan';
 	@override String get main => 'Hauptcampus';
 	@override String get med => 'Medizin-Campus';
-	@override String get city => 'Medizin-Campus';
+	@override String get city => 'Campus-Stadtgebiet';
 }
 
 // Path: mensa
