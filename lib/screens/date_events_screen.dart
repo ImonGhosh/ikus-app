@@ -1,10 +1,7 @@
-// lib/screens/date_events_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ikus_app/model/event.dart';
 import 'package:ikus_app/screens/event_screen.dart';
-import 'package:ikus_app/utility/globals.dart';
 
 class DateEventsScreen extends StatelessWidget {
   final DateTime date;

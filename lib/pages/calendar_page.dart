@@ -140,18 +140,6 @@ class _CalendarPageState extends State<CalendarPage> {
                   },
                   onDaySelected: (DateTime date, _) {
                     List<Event> currEvents = _events[DateTime(date.year, date.month, date.day)] ?? [];
-                    // Popups.generic(
-                    //   context: context,
-                    //   height: currEvents.length >= 3 ? 275 : 250,
-                    //   body: DatePopup(
-                    //     date: date,
-                    //     events: currEvents.cast<Event>(),
-                    //     onEventPop: () {
-                    //       // in case that register information has changed
-                    //       _updateDataWithSetState();
-                    //     },
-                    //   )
-                    // );
                     Navigator.push(
                       context,
                       MaterialPageRoute(

@@ -188,7 +188,8 @@
   "map": {
     "title": "Campus Map",
     "main": "Main Campus",
-    "med": "Medicine Campus"
+    "med": "Medicine Campus",
+    "city": "Campus City Area"
   },
   "mensa": {
     "title": "Mensa",

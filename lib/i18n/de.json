@@ -188,7 +188,8 @@
   "map": {
     "title": "Campusplan",
     "main": "Hauptcampus",
-    "med": "Medizin-Campus"
+    "med": "Medizin-Campus",
+    "city": "Campus-Stadtgebiet"
   },
   "mensa": {
     "title": "Mensa",

@@ -51,7 +51,6 @@ class MapScreen extends StatelessWidget {
             },
           ),
           SizedBox(height: 50),
-          // SizedBox(height: 30),
           IconText(
             size: OvguPixels.headerSize,
             text: t.map.city,
